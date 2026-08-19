@@ -48,6 +48,18 @@ npx skills add StreetCornelia/skills
 
 通过 `$sub-agent` 显式调用,或明确要求本次任务采用子 Agent 模式时触发。
 
+### speak-human — 说人话
+
+调用它等于说"上一条重写"。一套工具无关的输出规则:先结论后理由,每个判断句要能指向可核对的来源(命令输出、某文件某行、对方原话),指不出来就标"推测",比喻不许出现在论证位置。默认动作是按规则重写刚才那段并输出可直接用的版本,不输出"我改了哪几处"。
+
+自己手写的"说人话"提示词通常是一张禁词表,而禁词表同义替换就能绕过:封了"咬出"换成"逼出",封了"税"换成"成本代价",规则没被违反,毛病还在。[speak-human/assets/rules.md](speak-human/assets/rules.md) 在禁令之外加了三样禁词表给不了的东西:
+
+- **正面规格**:判断句必须指向可核对的来源。这条没法用换词满足
+- **结构约束**:段末总结升华句、三项并列排比、"总之/综上"收尾段——全是普通词汇,禁词表拦不住
+- **反向约束**:只封文学一侧会滑向公文体,所以同时禁止名词化("进行优化")和被动语态当默认
+
+说要安装时,`scripts/install.sh` 无参数就探测当前环境并写入:运行时环境变量命中(`CLAUDECODE`、`CURSOR_TRACE_ID`)就装,项目里已有 `AGENTS.md` / `.cursor/` / `.github/copilot-instructions.md` / `GEMINI.md` / `CLAUDE.md` 也装,只有 home 目录痕迹(`~/.codex`、`~/.gemini`)只报告不装——那是全局配置。支持 `print`(粘到任何网页版对话框)、`claude-style`、`claude-md`、`agents-md`、`codex-global`、`cursor`、`copilot`、`gemini`。Markdown 类目标用标记块包住,重复运行只替换块内内容。哪些位置经过本机核对、哪些是按公开约定写的,SKILL.md 里逐条标了。
+
 ## 工具
 
 ### render-probe — 作图语法渲染探针
