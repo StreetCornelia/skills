@@ -31,7 +31,7 @@ npx skills add StreetCornelia/skills
 
 增量更新:靠文件顶部的"更新水位"只处理新内容,多次触发不产生重复节点。筛选标准只有一条——它会随上下文消失且未来会被再次需要吗?执行流水和礼节性往返不记,宁可空也不灌水。
 
-**为什么是嵌套列表而不是 Mermaid**:实测四个客户端(Claude Code 终端、Claude Desktop 的 Claude Code 标签页、Claude Artifact、Codex 桌面),只有嵌套列表处处出图——mermaid 在两个终端类客户端显示成源码,SVG 嵌进 Markdown 后在 Codex 桌面被当源码或降级成链接。存储层取客户端交集,展示层才取并集:想看放射状图时现场生成(默认 mermaid),文件里不存第二份结构。矩阵见 [references/rendering.md](dialog-map/references/rendering.md),重测工具见下面的 render-probe。
+**为什么是嵌套列表而不是 Mermaid**:实测四种环境(Claude Code 终端、Claude Desktop 的 Claude Code 标签页、Claude Artifact、另一个 Markdown 渲染视图),只有嵌套列表处处出图——mermaid 在两个终端类客户端显示成源码,内联 SVG 更窄。存储层取客户端交集,展示层才取并集:想看放射状图时现场生成(默认 mermaid),文件里不存第二份结构。矩阵见 [references/rendering.md](dialog-map/references/rendering.md),重测工具见下面的 render-probe。
 
 触发时机以 `/compact` **之前**和开新会话继续同一主题时**先读它**价值最高。附三种 Claude Code hook 接法(每 N 轮提醒 / 压缩前落盘 / 新会话读回)与计数脚本,见 [references/auto-trigger.md](dialog-map/references/auto-trigger.md)。
 

@@ -2,7 +2,7 @@
 
 ## 为什么是嵌套列表,不是 Mermaid
 
-脑图部分用嵌套 Markdown 列表。这不是审美选择,是实测出来的——见 [rendering.md](rendering.md) 的渲染矩阵:四个客户端里**只有嵌套列表全部出图**。mermaid 在 Claude Code 终端和 Claude Desktop 的 Claude Code 标签页显示成源码,而这两处正是这份文件最常被读到的地方;SVG 更窄,嵌进 Markdown 后连 Codex 桌面都不渲染。嵌套列表在任何环境下都能读:终端里是缩进纯文本,Markdown 渲染器里是折叠列表。
+脑图部分用嵌套 Markdown 列表。这不是审美选择,是实测出来的——见 [rendering.md](rendering.md) 的渲染矩阵:四种环境里**只有嵌套列表全部出图**。mermaid 在 Claude Code 终端和 Claude Desktop 的 Claude Code 标签页显示成源码,而这两处正是这份文件最常被读到的地方;内联 SVG 更窄,连支持 mermaid 的 Markdown 渲染视图都把它当源码。嵌套列表在任何环境下都能读:终端里是缩进纯文本,Markdown 渲染器里是折叠列表。
 
 存储格式取所有客户端的**交集**,展示格式才取并集——这是两个不同的问题,混在一起就会得出"要为某个客户端选一种格式"的错误结论。
 

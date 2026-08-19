@@ -50,7 +50,7 @@ description: 把当前对话的思考过程沉淀成脑图和决策记录,并在
 
 被否决的节点**保留在图里**,不要删。删掉它,图就只剩结论,失去了"这条路试过了"的信息,而这正是最容易被重复浪费的部分。
 
-**脑图用嵌套 Markdown 列表写,不要用 Mermaid、也不要用 SVG。** 这是实测结论:在 Claude Code 终端、Claude Desktop 的 Claude Code 标签页、Claude Artifact、Codex 桌面应用四个客户端里逐一验证,**只有嵌套列表处处出图**;mermaid 在两个终端类客户端显示成源码,SVG 嵌进 Markdown 后在 Codex 桌面被当源码或降级成链接。完整矩阵见 [references/rendering.md](references/rendering.md)。
+**脑图用嵌套 Markdown 列表写,不要用 Mermaid、也不要用 SVG。** 这是实测结论:在四种环境里逐一验证(Claude Code 终端、Claude Desktop 的 Claude Code 标签页、Claude Artifact、另一个 Markdown 渲染视图),**只有嵌套列表处处出图**;mermaid 在两个终端类客户端显示成源码,内联 SVG 更窄。完整矩阵、以及其中两处存疑的标注见 [references/rendering.md](references/rendering.md)。
 
 理由不是审美而是交集:这份文件会被多个客户端反复读到,第一读者还是下一个会话的 agent——它当纯文本读,mermaid 对它只是更难解析的等价物。
 
