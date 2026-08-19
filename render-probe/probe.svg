@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="180" viewBox="0 0 520 180" role="img" aria-label="SVG 探针脑图">
+  <title>SVG 探针</title>
+  <desc>如果你看到三个方框和连线,说明这个客户端渲染独立 SVG 文件。</desc>
+  <path d="M116,90 C140,90 140,46 164,46" fill="none" stroke="#8A9199" stroke-width="1"/>
+  <path d="M116,90 C140,90 140,134 164,134" fill="none" stroke="#8A9199" stroke-width="1"/>
+  <rect x="12" y="70" width="104" height="40" rx="5" fill="#D8E5E4" stroke="#1B6B72" stroke-width="1"/>
+  <text x="64" y="95" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#134B50">SVG 探针</text>
+  <rect x="164" y="26" width="200" height="40" rx="5" fill="#E4EFDD" stroke="#3E6B34" stroke-width="1"/>
+  <text x="180" y="51" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#2C4C25">看到方框就是渲染了</text>
+  <rect x="164" y="114" width="200" height="40" rx="5" fill="#F3E7D6" stroke="#8A6410" stroke-width="1"/>
+  <text x="180" y="139" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#63480B">看到 XML 就是没渲染</text>
+</svg>
