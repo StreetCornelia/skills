@@ -1,0 +1,7 @@
+interface:
+  display_name: "Sub Agent"
+  short_description: "强制所有任务由子 Agent 执行，并在可拆分时并行编排"
+  default_prompt: "使用 $sub-agent 完成这个任务；所有实际工作交给子 Agent，并在可拆分时并行执行。"
+
+policy:
+  allow_implicit_invocation: false
