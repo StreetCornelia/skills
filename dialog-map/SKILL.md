@@ -1,6 +1,6 @@
 ---
 name: dialog-map
-description: 把当前对话的思考过程沉淀成脑图和决策记录,并在压缩上下文前保证这些内容已落盘。维护一份 dialog-map.md:Mermaid 脑图记录问题结构,决策记录保存每个结论的理由、被否决的路径和失效条件,压缩时间线把已入图的对话段落收敛成一行。用户提到更新脑图、思维导图、记录对话、整理思路、沉淀讨论、压缩前先记录、快满了、/dialog-map,或即将执行 /compact、要交接会话、要开新会话继续同一主题时使用;也在长对话中经过多轮探索、出现明确结论或推翻了原方案后主动使用。只要一次性画图、不需要持续维护记录时不使用本 skill。
+description: 把当前对话的思考过程沉淀成脑图和决策记录,并在压缩上下文前保证这些内容已落盘。维护一份 dialog-map.md:嵌套列表脑图记录问题结构,决策记录保存每个结论的理由、被否决的路径和失效条件,压缩时间线把已入图的对话段落收敛成一行。用户提到更新脑图、思维导图、记录对话、整理思路、沉淀讨论、压缩前先记录、快满了、/dialog-map,或即将执行 /compact、要交接会话、要开新会话继续同一主题时使用;也在长对话中经过多轮探索、出现明确结论或推翻了原方案后主动使用。只要一次性画图、不需要持续维护记录时不使用本 skill。
 ---
 
 # 对话脑图(dialog-map)
@@ -50,7 +50,13 @@ description: 把当前对话的思考过程沉淀成脑图和决策记录,并在
 
 被否决的节点**保留在图里**,不要删。删掉它,图就只剩结论,失去了"这条路试过了"的信息,而这正是最容易被重复浪费的部分。
 
-Mermaid mindmap 的语法细节和易错点见 [references/map-format.md](references/map-format.md)——节点文本里的括号和冒号会直接导致渲染失败,写之前先看。
+**脑图用嵌套 Markdown 列表写,不要用 Mermaid、也不要用 SVG。** 这是实测结论:在 Claude Code 终端、Claude Desktop 的 Claude Code 标签页、Claude Artifact、Codex 桌面应用四个客户端里逐一验证,**只有嵌套列表处处出图**;mermaid 在两个终端类客户端显示成源码,SVG 嵌进 Markdown 后在 Codex 桌面被当源码或降级成链接。完整矩阵见 [references/rendering.md](references/rendering.md)。
+
+理由不是审美而是交集:这份文件会被多个客户端反复读到,第一读者还是下一个会话的 agent——它当纯文本读,mermaid 对它只是更难解析的等价物。
+
+人想看放射状图像时**现场生成、看完即弃**,默认用 mermaid(覆盖面最广的展示格式),需要可分享入口时发布成 Artifact,需要一张可拖走的图片时写成独立 `.svg` 文件。生成方法和 mermaid 的语法坑都在 [rendering.md](references/rendering.md) 里。绝不要在文件里同时长期维护列表和 mermaid 两份结构——手工同步必然漂移,漂移之后你不知道该信哪一份。
+
+格式细节与增量更新时的挂载判断见 [references/map-format.md](references/map-format.md)。
 
 ### 4. 写决策记录
 

@@ -25,11 +25,13 @@ npx skills add StreetCornelia/skills
 
 把对话里最先消失、又最难重建的东西留下来:代码在 git 里、文件在磁盘上,只有"为什么走这条路、否决了什么、依据的约束是什么"随上下文窗口一起蒸发。本 skill 增量维护一份 `.claude/dialog-map.md`:
 
-- **脑图**(Mermaid mindmap):管结构,节点带状态标记 `✓` 已定 / `✗` 已否决 / `?` 待决 / `!` 约束,被否决的节点保留不删
+- **脑图**(嵌套列表):管结构,节点带状态标记 `✓` 已定 / `✗` 已否决 / `?` 待决 / `!` 约束,被否决的节点保留不删
 - **决策记录**:管"为什么",每条含决定、理由、否决了哪些备选、以及**失效条件**(什么变化会让这个决定需要重审)
 - **待决问题 / 压缩时间线**:未解的悬置项,以及已入图段落收敛成的一行摘要
 
 增量更新:靠文件顶部的"更新水位"只处理新内容,多次触发不产生重复节点。筛选标准只有一条——它会随上下文消失且未来会被再次需要吗?执行流水和礼节性往返不记,宁可空也不灌水。
+
+**为什么是嵌套列表而不是 Mermaid**:实测四个客户端(Claude Code 终端、Claude Desktop 的 Claude Code 标签页、Claude Artifact、Codex 桌面),只有嵌套列表处处出图——mermaid 在两个终端类客户端显示成源码,SVG 嵌进 Markdown 后在 Codex 桌面被当源码或降级成链接。存储层取客户端交集,展示层才取并集:想看放射状图时现场生成(默认 mermaid),文件里不存第二份结构。矩阵见 [references/rendering.md](dialog-map/references/rendering.md),重测工具见下面的 render-probe。
 
 触发时机以 `/compact` **之前**和开新会话继续同一主题时**先读它**价值最高。附三种 Claude Code hook 接法(每 N 轮提醒 / 压缩前落盘 / 新会话读回)与计数脚本,见 [references/auto-trigger.md](dialog-map/references/auto-trigger.md)。
 
@@ -45,3 +47,11 @@ npx skills add StreetCornelia/skills
 - 规则与具体工具解耦,附 Claude Code 等环境的机制映射
 
 通过 `$sub-agent` 显式调用,或明确要求本次任务采用子 Agent 模式时触发。
+
+## 工具
+
+### render-probe — 作图语法渲染探针
+
+不是 skill,是个可复用的诊断工具。[render-probe/probe.md](render-probe/probe.md) 把同一棵树写成四种形式(Mermaid 代码块、内联 SVG、`![](x.svg)` 文件引用、嵌套列表),每个探针下面注明"通过长什么样、不通过长什么样",在任意客户端打开一次就知道它支持哪种语法。文件末尾有实测结果表。
+
+用法是**看列不看行**:哪一列在你实际会用到的客户端里全绿,那一列就是长期文件的存储格式;覆盖面最广的列(而非最好看的列)作为默认展示格式。加了新客户端就再跑一次——渲染能力一直在变,结论会过期。

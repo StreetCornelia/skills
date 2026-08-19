@@ -63,17 +63,21 @@ mindmap
 
 在你实际会读到脑图的每个客户端里跑一遍,填进去。
 
-| 客户端 | A · Mermaid | B1 · 内联 SVG | B2 · SVG 文件 | C · 嵌套列表 |
+| 客户端 | A · Mermaid | B1 · 内联 SVG | B2 · SVG 文件引用 | C · 嵌套列表 |
 |---|---|---|---|---|
-| Claude Code 终端 | 源码 | 源码 | 不显示 | 通过 |
-| Claude Desktop · Claude Code 标签页 | 源码 | 源码 | ? | 通过 |
-| Claude Artifact 页面 | 通过 | 通过 | ? | 通过 |
-| Codex 桌面应用 | ? | ? | ? | ? |
-| Codex CLI 终端 | ? | ? | ? | ? |
-| VS Code Markdown 预览 | ? | ? | ? | ? |
-| GitHub 仓库页 | ? | ? | ? | ? |
+| Claude Code 终端 | ✗ 源码 | ✗ 源码 | ✗ | ✓ |
+| Claude Desktop · Claude Code 标签页 | ✗ 源码 | ✗ 源码 | — | ✓ |
+| Claude Artifact 页面 | ✓ | ✓ | — | ✓ |
+| Codex 桌面应用 | ✓ | ✗ 源码 | ✗ 变成链接 | ✓ |
+| Codex CLI 终端 | — | — | — | — |
+| VS Code Markdown 预览 | (✓) | (需扩展) | (✓) | ✓ |
+| GitHub 仓库页 | (✓) | (被过滤) | (✓) | ✓ |
 
-已填的三行是本次已确认的结果。`?` 是还没测的。
+`✓` 出图 · `✗` 不出图 · `—` 未测 · `(括号)` 依据文档预期,未实测。
+
+**额外发现:把 `.svg` 文件单独打开,Codex 桌面正常渲染。** 也就是说 SVG 的问题不在 SVG 本身,而在"嵌进 Markdown"这一步——内联被当源码,图片引用被当链接。
+
+**B2 的失败方式值得记一笔:** Codex 把 `![alt](probe.svg)` 渲成了链接而不是图片,`!` 成了字面量。这说明它的 Markdown 视图对本地相对路径图片引用整体不可靠,不只是 SVG 的问题。
 
 ## 怎么测
 
